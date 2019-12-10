@@ -1,0 +1,8 @@
+if url
+    if url.player.live.available
+        embed(src=url.player.live.embed, width=300, height=250)
+        p (live)
+    else
+        embed(src=url.player.day.embed, width=300, height=250)
+        p (daily cam - live not available)
+        

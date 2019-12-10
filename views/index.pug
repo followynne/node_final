@@ -1,11 +1,23 @@
 extends layout
 
+
 block content
   h1= title
-  p Welcome to #{title}
-  p #{value}
-  form(action='/' method='POST')
-    div.form-group
+  strong
+    p Sacchet (Numero1 <3) - Merlino - Gregoricchio
+  div(class="adding")
+  select(id='continent')
+    option(disabled selected value) --- choose option ---
+    each variable in [{code: "AF", nation: "Africa"},{code: "AN", nation: "Antartide"},{code: "AS", nation: "Asia"},{code: "EU", nation: "Europe"},{code: "NA", nation: "North America"},{code: "OC", nation: "Oceania"},{code: "SA", nation: "South America"}]
+      option(value=variable.code) #{variable.nation}
+  select(id='country', style={display:"none"})
+  select(id='region', style={display:"none"})
+  select(id='location', style={display:"none"})
+  
+  div(class="webcam1")
+  
+  // form(action='/' method='POST')
+      div.form-group
 
       input(
         type='file'

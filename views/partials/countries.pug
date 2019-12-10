@@ -1,0 +1,19 @@
+if countries
+    select(id='country')
+        option(disabled selected value) --- choose option ---
+        each variable in countries
+            option(value=variable.id) #{variable.name}
+
+if regions
+    select(id='region')
+        option(disabled selected value) --- choose option ---
+        each variable in regions
+            option(value=variable.id) #{variable.name}
+
+if locations
+    select(id='location')
+        option(disabled selected value) --- choose option ---
+        each variable in locations
+            each vb in variable
+                option(value=vb.id) #{vb.title}
+

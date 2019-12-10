@@ -6,11 +6,10 @@ var unirest = require("unirest");
 /* GET home page. */
 router.get('/', function (req, res, next) {
 
-  var req = unirest("GET", "https://webcamstravel.p.rapidapi.com/webcams/list/country=IT");
-  var val;
+  var req = unirest("GET", "https://webcamstravel.p.rapidapi.com/webcams/list/continent=EU");
   req.query({
     "lang": "en",
-    "show": "webcams%3Aimage%2Clocation"
+    "show": "continents"
   });
 
   req.headers({
@@ -19,17 +18,16 @@ router.get('/', function (req, res, next) {
   });
 
 
-  req.end(function (res) {
-    if (res.error) throw new Error(res.error);
-    val = res.body;
-    console.log(res.body.result.webcams[0]);
-    
+  req.end(function (rese) {
+    if (rese.error) throw new Error(rese.error);
+    console.log(rese);
+    res.render('index', { title: 'Weather and Webcams'});
   });
-  res.render('index', { title: 'Express', value : val });
 });
 
 router.post('/', function (req, res, next) {
   console.log(req);
+  return;
 })
 
 module.exports = router;
