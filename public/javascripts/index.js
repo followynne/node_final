@@ -5,6 +5,9 @@ $(document).ready(() => {
     $('#country').on('change', (event) => addClick(event));
     $('#region').on('change', (event) => addClick(event));
     $('#location').on('change', (event) => embedWebcam(event));
+    $('#weather').submit(event => {
+       weatherLogic(event);
+    })
 })
 
 function addClick (event){
@@ -32,4 +35,14 @@ function embedWebcam(event){
     .then(data => {
         $('.webcam1').html(data);
     }).catch(err => alert('nope, ' + err));
+}
+
+const weatherLogic = (event) => {
+    event.preventDefault();
+    let action = $(event.target).attr('action');
+    let input =  $(event.target).find('input[name="city"]').val()
+    let post = $.post(action, {"city" : input});
+    post.done(data => {
+        $('#weather_result').html(data);
+    });
 }

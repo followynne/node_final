@@ -1,12 +1,29 @@
 extends layout
 
-
 block content
   h1= title
   strong
     p Sacchet (Numero1 <3) - Merlino - Gregoricchio
-  div To get a JSON list of all Live Cams available from API, please go to: #[a(href="/live") live] 
+  div To get a JSON list of all Live Cams available from API, please go to: #[a(href="/live") live]
   div
+  div Weather Choice:
+    form(id='weather' action='/' method='POST')
+      div.form-group
+
+      input(
+        name="city"
+        type="text"
+        class="ghost-input"
+        placeholder="Enter a City"
+        required
+      ) 
+      input(
+        type='submit'
+        class="ghost-button"
+        value="Get Weather"
+      )
+    div(id="weather_result")
+      
   div(class="adding")
   select(id='continent')
     option(disabled selected value) --- choose option ---
@@ -18,16 +35,6 @@ block content
   
   div(class="webcam1")
   
-  // form(action='/' method='POST')
-      div.form-group
 
-      input(
-        type='file'
-        name='send'
-      ) 
-      input(
-        type='submit'
-        name='send'
-      )
   
     
