@@ -7,7 +7,8 @@ router.get('/', function (req, res, next) {
     var req = unirest("GET", "https://webcamstravel.p.rapidapi.com/webcams/list/webcam=" + dataSearched);
     req.query({
       "lang": "en",
-      "show": "webcams:player"
+      "show": "webcams:player",
+      
     });
     req.headers({
       "x-rapidapi-host": "webcamstravel.p.rapidapi.com",

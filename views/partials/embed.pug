@@ -1,8 +1,11 @@
 if url
     if url.player.live.available
-        embed(src=url.player.live.embed, width=300, height=250)
+        embed(src=url.player.live.embed, width=500, height=450, allowfullscreen=true)
         p (live)
+        embed(src='http://webcams.windy.com/webcams/stream/'+url.id, width=500, height=450, allowfullscreen=true)
+        p (in-page live || experimental)
+        
     else
-        embed(src=url.player.day.embed, width=300, height=250)
+        iframe(src=''+url.player.day.embed+"?autoplay=1", autoplay=1,width=500, height=450)
         p (daily cam - live not available)
         

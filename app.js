@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var requestRouter = require('./routes/camlocation');
 var embedRouter = require('./routes/camlink');
+var liveRouter = require('./routes/live');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/camlocation', requestRouter);
 app.use('/camlink', embedRouter);
+app.use('/live', liveRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,5 +44,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

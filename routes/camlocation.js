@@ -40,7 +40,7 @@ router.get('/getregion', function (req, res, next) {
     let dataSearched = req.query.search;
     let offset = 0;
     let locations = [];
-    let request = (startingpoint) => {
+    let request = () => {
       var req = unirest("GET", "https://webcamstravel.p.rapidapi.com/webcams/list/region=" + dataSearched + '/limit=50,' + offset);
       req.query({
         "lang": "en",
@@ -54,10 +54,10 @@ router.get('/getregion', function (req, res, next) {
           if (rese.error) throw new Error(rese.error);
           locations.push([...rese.body.result.webcams]);
           offset+=50;
-          rese.body.result.total>(rese.body.result.offset+startingpoint) ? request(offset) : res.render('partials/countries', {locations: locations});
+          rese.body.result.total>rese.body.result.offset ? request() : res.render('partials/countries', {locations: locations});
       });
     }
-    request(offset);
+    request();
 
 });
 

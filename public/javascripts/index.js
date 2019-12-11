@@ -14,12 +14,14 @@ function addClick (event){
     let nextchoice = $(event.target).next('select');
     selectsiblings.empty();
     selectsiblings.hide();
+    $('.webcam1').html('');
 
     fetch('/camlocation/get' +  idref + '?' + $.param({search: data}),{"Access-Control-Allow-Origin": "*"})
     .then(res => res.text())
     .then(data => {
         nextchoice.html(data);
-        nextchoice.show();    
+        console.log($('#location').children('option').length);
+        nextchoice.show();
     }).catch(err => alert('nope, ' + err));
 }
 
