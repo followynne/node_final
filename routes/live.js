@@ -5,8 +5,8 @@ var unirest = require("unirest");
 router.get('/', function (req, res, next) {
 
     let offset = 0;
-    let locations = {};
-    //let chuck = [];
+    //let locations = {};
+    let chunck = [];
     let request = () => {
         var req = unirest("GET", "https://webcamstravel.p.rapidapi.com/webcams/list/property=live/limit=50," + offset);
         req.query({
@@ -21,21 +21,21 @@ router.get('/', function (req, res, next) {
             if (result.error) throw new Error(result.error);
             let ref = result.body.result.webcams;
             // push to array = 7s, object manipulation + add to Obj = 10s
-            //chuck.push(ref);
+            chunck.push(ref);
             
-            Object.keys(ref).forEach((key) => {
-                let tempobj = { [ref[key].id] : [
-                                    {"title":ref[key].title,
-                                     "region":ref[key].location.region,
-                                     "country":ref[key].location.country,
-                                     "continent":ref[key].location.continent
-                                    }
-                                ]
-                              };
+            /* Object.keys(ref).forEach((key) => {
+                 let tempobj = { [ref[key].id] : [
+                                     {"title":ref[key].title,
+                                      "region":ref[key].location.region,
+                                      "country":ref[key].location.country,
+                                      "continent":ref[key].location.continent
+                                     }
+                                 ]
+                               };
                 Object.assign(locations, tempobj)
-            })
+            })*/
             offset+=50;
-            result.body.result.total > result.body.result.offset ? request() : res.send(locations);
+            result.body.result.total > result.body.result.offset ? request() : res.send(chunck);
         });
     };
     request();
