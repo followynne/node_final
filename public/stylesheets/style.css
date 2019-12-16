@@ -7,6 +7,19 @@ a {
   color: #00B7FF;
 }
 
+h1, h2{
+  margin: 2px auto;
+  width: fit-content;
+  text-align: center;
+  border: 2px solid;
+  padding: 10px;
+
+}
 div {
-  padding-bottom: 5px;
+  padding: 5px;
+  font-size: 20px;
+}
+#weather {
+  display: inline-block;
+  margin-left: 10px;
 }

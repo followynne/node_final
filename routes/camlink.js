@@ -16,7 +16,6 @@ router.get('/', function (req, res, next) {
     });
     req.end(function (rese) {
         if (rese.error) throw new Error(rese.error);  
-        //res.send(rese.body.result.webcams)
         res.render('partials/embed', {url: rese.body.result.webcams[0]});
     });
 });
