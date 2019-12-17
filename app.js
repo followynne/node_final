@@ -3,9 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var requestRouter = require('./routes/camlocation');
 var embedRouter = require('./routes/camlink');
 var liveRouter = require('./routes/live');
@@ -24,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/camlocation', requestRouter);
 app.use('/camlink', embedRouter);
 app.use('/live', liveRouter);
