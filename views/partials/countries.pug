@@ -15,5 +15,5 @@ if locations
         option(disabled selected value) --- choose option ---
         each variable in locations
             each vb in variable
-                option(value=vb.id) #{vb.title}
+                option(value=vb.id city=vb.location.city) #{vb.title}
 

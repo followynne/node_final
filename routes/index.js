@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var unirest = require("unirest");
-const apiKey = '3880c52a0c716a430380ffa1bfd11f31';
+const apiKey = process.env.apiKey;
 
 
 /* GET home page. */

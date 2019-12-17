@@ -4,7 +4,13 @@ $(document).ready(() => {
     $('#continent').on('change', (event) => addClick(event));
     $('#country').on('change', (event) => addClick(event));
     $('#region').on('change', (event) => addClick(event));
-    $('#location').on('change', (event) => embedWebcam(event));
+    $('#location').on('change', (event) => {
+        embedWebcam(event);
+        let value = $(event.target).children('option:selected').attr('city');
+        $('#weat').val(value);
+        $('#weather').submit();
+    });
+
     $('#weather').submit(event => {
        weatherLogic(event);
     })
@@ -18,12 +24,15 @@ function addClick (event){
     selectsiblings.empty();
     selectsiblings.hide();
     $('.webcam1').html('');
-
     fetch('/camlocation/get' +  idref + '?' + $.param({search: data}),{"Access-Control-Allow-Origin": "*"})
-    .then(res => res.text())
+    .then(res => {
+        if (!res.ok){
+            throw new Error();
+        }    
+        return res.text()
+    })
     .then(data => {
         nextchoice.html(data);
-        console.log($('#location').children('option').length);
         nextchoice.show();
     }).catch(err => alert('nope, ' + err));
 }
@@ -31,7 +40,7 @@ function addClick (event){
 function embedWebcam(event){
     let data = $(event.target).val();
     fetch('/camlink?' + $.param({search: data}),{"Access-Control-Allow-Origin": "*"})
-    .then(res => res.text())
+    .then(res =>{if (res.status==404){console.log(res.err);return;} else { return res.text()}})
     .then(data => {
         $('.webcam1').html(data);
     }).catch(err => alert('nope, ' + err));
@@ -44,5 +53,5 @@ const weatherLogic = (event) => {
     let post = $.post(action, {"city" : input});
     post.done(data => {
         $('#weather_result').html(data);
-    });
+    }).fail((xhr, status, err) => console.log('Error: ' + err + '; Status: ' + status));
 }

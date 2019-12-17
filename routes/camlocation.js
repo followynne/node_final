@@ -11,7 +11,7 @@ router.get('/getcontinent', function (req, res, next) {
     });
     req.headers({
       "x-rapidapi-host": "webcamstravel.p.rapidapi.com",
-      "x-rapidapi-key": "56d819242bmsh4b3f8126e930fc8p1e2a16jsn3766d82d1118"
+      "x-rapidapi-key": process.env.RAPIDAPI
     });
     req.end(function (rese) {
         if (rese.error) throw new Error(rese.error);  
@@ -28,7 +28,7 @@ router.get('/getcountry', function (req, res, next) {
     });
     req.headers({
       "x-rapidapi-host": "webcamstravel.p.rapidapi.com",
-      "x-rapidapi-key": "56d819242bmsh4b3f8126e930fc8p1e2a16jsn3766d82d1118"
+      "x-rapidapi-key": process.env.RAPIDAPI
     });
     req.end(function (rese) {
         if (rese.error) throw new Error(rese.error);  
@@ -44,11 +44,11 @@ router.get('/getregion', function (req, res, next) {
       var req = unirest("GET", "https://webcamstravel.p.rapidapi.com/webcams/list/region=" + dataSearched + '/limit=50,' + offset);
       req.query({
         "lang": "en",
-        "show": "webcams"
+        "show": "webcams:location"
       });
       req.headers({
         "x-rapidapi-host": "webcamstravel.p.rapidapi.com",
-        "x-rapidapi-key": "56d819242bmsh4b3f8126e930fc8p1e2a16jsn3766d82d1118"
+        "x-rapidapi-key": process.env.RAPIDAPI
       });
       req.end(function (rese) {
           if (rese.error) throw new Error(rese.error);
