@@ -25,12 +25,7 @@ function addClick (event){
     selectsiblings.hide();
     $('.webcam1').html('');
     fetch('/camlocation/get' +  idref + '?' + $.param({search: data}),{"Access-Control-Allow-Origin": "*"})
-    .then(res => {
-        if (!res.ok){
-            throw new Error();
-        }    
-        return res.text()
-    })
+    .then(res => res.text())
     .then(data => {
         nextchoice.html(data);
         nextchoice.show();
@@ -40,7 +35,7 @@ function addClick (event){
 function embedWebcam(event){
     let data = $(event.target).val();
     fetch('/camlink?' + $.param({search: data}),{"Access-Control-Allow-Origin": "*"})
-    .then(res =>{if (res.status==404){console.log(res.err);return;} else { return res.text()}})
+    .then(res => res.text())
     .then(data => {
         $('.webcam1').html(data);
     }).catch(err => alert('nope, ' + err));
@@ -53,5 +48,5 @@ const weatherLogic = (event) => {
     let post = $.post(action, {"city" : input});
     post.done(data => {
         $('#weather_result').html(data);
-    }).fail((xhr, status, err) => console.log('Error: ' + err + '; Status: ' + status));
+    }).fail((xhr, status, err) => console.log('Error'));
 }
