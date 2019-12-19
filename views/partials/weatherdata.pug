@@ -1,3 +1,7 @@
 if weather
     strong
         p Citta: #{weather.name}, Temperatura: #{weather.main.temp} C°, Umidità: #{weather.main.humidity}%, Pressione: #{weather.main.pressure} hpa
+
+if error
+    strong
+        p #{error}
