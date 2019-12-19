@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
         const birthtime = fs.statSync(path).mtimeMs;
         if ((Date.now() - birthtime) < 3600000){
             let content = fs.readFileSync('public/cache.json', 'UTF-8');
-            res.send(content);
+            res.send(JSON.parse(content));
         } else {
             retrieve();
         }

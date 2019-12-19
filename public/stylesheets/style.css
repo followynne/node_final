@@ -1,10 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif !important;
+  font: 14px "Raleway", sans-serif;
+  background-image: url("../images/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 a {
   color: #00B7FF;
+}
+
+.corpo{
+  text-align: center;
 }
 
 h1, h2{
@@ -15,6 +25,11 @@ h1, h2{
   padding: 10px;
 
 }
+
+.autori{
+  margin-bottom: 50px;
+}
+
 div {
   padding: 5px;
   font-size: 20px;
@@ -22,4 +37,14 @@ div {
 #weather {
   display: inline-block;
   margin-left: 10px;
+}
+.webcam1{
+  text-align: center;
+}
+
+iframe{
+  margin-top: 30px;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgba(32, 32, 32, 0.534);
 }
