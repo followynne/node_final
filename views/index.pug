@@ -3,38 +3,40 @@ extends layout
 block content
   h1= title
   strong
-    h2 Sacchet (Numero1 &#128525;) - Ferrero Merlino - Gregoricchio
-  div To get a JSON list of all Live Cams available from API, please go to: #[a(href="/live") live]
-  div Weather Choice:
-    form(id='weather' action='/' method='POST')
-      div.form-group
+    h2(class="autori") Sacchet (Numero1 &#128525;) - Ferrero Merlino - Gregoricchio
 
-      input(
-        name="city"
-        type="text"
-        id="weat"
-        class="ghost-input"
-        placeholder="Enter a City"
-        required
-      ) 
-      input(
-        type='submit'
-        class="ghost-button"
-        value="Get Weather"
-      )
-    div(id="weather_result")
+  div(class="corpo")
+    div To get a JSON list of all Live Cams available from API, please go to: #[a(href="/live") live]
+    div Weather Choice:
+      form(id='weather' action='/' method='POST')
+        div.form-group
+
+        input(
+          name="city"
+          type="text"
+          id="weat"
+          class="ghost-input"
+          placeholder="Enter a City"
+          required
+        ) 
+        input(
+          type='submit'
+          class="ghost-button"
+          value="Get Weather"
+        )
+      div(id="weather_result")
+        
+    div(class="adding") Select your desidered worldwide webcam:
+    div
+      select(id='continent')
+        option(disabled selected value) --- choose option ---
+        each variable in [{code: "AF", nation: "Africa"},{code: "AN", nation: "Antartide"},{code: "AS", nation: "Asia"},{code: "EU", nation: "Europe"},{code: "NA", nation: "North America"},{code: "OC", nation: "Oceania"},{code: "SA", nation: "South America"}]
+          option(value=variable.code) #{variable.nation}
+      select(id='country', style={display:"none"})
+      select(id='region', style={display:"none"})
+      select(id='location', style={display:"none"})
       
-  div(class="adding") Select your desidered worldwide webcam:
-  div
-    select(id='continent')
-      option(disabled selected value) --- choose option ---
-      each variable in [{code: "AF", nation: "Africa"},{code: "AN", nation: "Antartide"},{code: "AS", nation: "Asia"},{code: "EU", nation: "Europe"},{code: "NA", nation: "North America"},{code: "OC", nation: "Oceania"},{code: "SA", nation: "South America"}]
-        option(value=variable.code) #{variable.nation}
-    select(id='country', style={display:"none"})
-    select(id='region', style={display:"none"})
-    select(id='location', style={display:"none"})
-    
-  div(class="webcam1")
+    div(class="webcam1")
   
 
   

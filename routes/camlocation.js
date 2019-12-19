@@ -15,7 +15,9 @@ router.get('/getcontinent', function (req, res, next) {
     });
     req.end(function (rese) {
         if (rese.error) throw new Error(rese.error);  
-        return res.render('partials/countries', {countries: rese.body.result.countries});
+        let x = rese.body.result.countries;
+        x.sort((a, b) => (a.name > b.name) ? 1 : -1)
+        return res.render('partials/countries', {countries: x});
     });
 });
 
@@ -32,7 +34,9 @@ router.get('/getcountry', function (req, res, next) {
     });
     req.end(function (rese) {
         if (rese.error) throw new Error(rese.error);  
-        return res.render('partials/countries', {regions: rese.body.result.regions});
+        let x = rese.body.result.regions;
+        x.sort((a, b) => (a.name > b.name) ? 1 : -1)
+        return res.render('partials/countries', {regions: x});        
     });
 });
 
@@ -54,6 +58,7 @@ router.get('/getregion', function (req, res, next) {
           if (rese.error) throw new Error(rese.error);
           locations.push([...rese.body.result.webcams]);
           offset+=50;
+          locations[0].sort((a, b) => (a.title > b.title) ? 1 : -1);
           rese.body.result.total>rese.body.result.offset ? request() : res.render('partials/countries', {locations: locations});
       });
     }
